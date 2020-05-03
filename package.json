@@ -1,0 +1,24 @@
+{
+  "name": "recruit-api",
+  "version": "1.0.0",
+  "description": "Rest API for the talent recruitment app.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EffeArts/recruit-API.git"
+  },
+  "keywords": [
+    "Nodejs",
+    "Express",
+    "Effe"
+  ],
+  "author": "Ishimwe Ayman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EffeArts/recruit-API/issues"
+  },
+  "homepage": "https://github.com/EffeArts/recruit-API#readme"
+}
