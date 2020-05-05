@@ -25,6 +25,7 @@ app.get("/", (req, res) => {
 });
 
 require('./app/routes/inst_type.routes')(app);
+require('./app/routes/inst_status.routes')(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;
