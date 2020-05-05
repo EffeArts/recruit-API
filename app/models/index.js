@@ -20,5 +20,6 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.inst_types = require("./inst_type.model.js")(sequelize, Sequelize);
+db.inst_statuses = require("./inst_status.model")(sequelize, Sequelize);
 
 module.exports = db;
