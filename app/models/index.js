@@ -21,5 +21,32 @@ db.sequelize = sequelize;
 
 db.inst_types = require("./inst_type.model.js")(sequelize, Sequelize);
 db.inst_statuses = require("./inst_status.model")(sequelize, Sequelize);
+db.institutions = require("./institution.model")(sequelize, Sequelize);
+
+// ----------------------Sequelize associations----------------------------
+// status and institutions relationship
+db.inst_statuses.hasMany(db.institutions, {
+    foreignKey: "inst_status_id",
+    as: "institutions",
+    onDelete: 'RESTRICT',
+    onUpdate: 'CASCADE'
+});
+db.institutions.belongsTo(db.inst_statuses, {
+    foreignKey: "inst_status_id",
+    targetKey: 'id',
+    as: "status",
+});
+
+// types and institutions relationship
+db.inst_types.hasMany(db.institutions, {
+    foreignKey: "inst_type_id",
+    as: "institutions",
+    onDelete: 'RESTRICT',
+    onUpdate: 'CASCADE'
+});
+db.institutions.belongsTo(db.inst_types, {
+    foreignKey: "inst_type_id",
+    as: "type"
+});
 
 module.exports = db;

@@ -6,7 +6,7 @@ const Op = db.sequelize.Op;
 // Create and Save a new Inst_type
 exports.create = (req, res) => {
     // Validate request
-    if (!req.body.name || !req.body.name) {
+    if (!req.body.name || !req.body.code) {
         res.status(400).send({
             message: "name or code can not be empty!"
         });
@@ -42,7 +42,9 @@ exports.findAll = (req, res) => {
 
     // req.query.name is used to get the query string from the request and consider it as condition
 
-    Inst_type.findAll({ where: condition })
+    Inst_type.findAll({
+            attributes: { exclude: ['createdAt', 'updatedAt'] }
+        })
         .then(data => {
             res.send(data);
         })
