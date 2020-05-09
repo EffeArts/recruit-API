@@ -24,8 +24,11 @@ app.get("/", (req, res) => {
     res.json({ message: "What's up recruiter app." });
 });
 
+// importing routes from routes folder
 require('./app/routes/inst_type.routes')(app);
 require('./app/routes/inst_status.routes')(app);
+require('./app/routes/institutions.routes')(app);
+
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;

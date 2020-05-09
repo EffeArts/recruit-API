@@ -1,10 +1,10 @@
-module.exports = (sequelize, Sequelize) => {
+module.exports = (sequelize, DataTypes) => {
     const Inst_type = sequelize.define("inst_type", {
         code: {
-            type: Sequelize.INTEGER
+            type: DataTypes.INTEGER
         },
         name: {
-            type: Sequelize.STRING(45),
+            type: DataTypes.STRING(45),
             allowNull: false
         }
     });
