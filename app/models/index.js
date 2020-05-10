@@ -22,6 +22,8 @@ db.sequelize = sequelize;
 db.inst_types = require("./inst_type.model.js")(sequelize, Sequelize);
 db.inst_statuses = require("./inst_status.model")(sequelize, Sequelize);
 db.institutions = require("./institution.model")(sequelize, Sequelize);
+db.user_roles = require("./user_role.model")(sequelize, Sequelize);
+db.user_statuses = require("./user_status.model")(sequelize, Sequelize);
 
 // ----------------------Sequelize associations----------------------------
 // status and institutions relationship
