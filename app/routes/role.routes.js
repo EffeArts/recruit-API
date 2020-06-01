@@ -1,5 +1,8 @@
+const roles = require("../controllers/role.controller");
+const { authJwt } = require('../middlewares');
+
 module.exports = app => {
-    const roles = require("../controllers/role.controller");
+
 
     let router = require("express").Router();
 
@@ -21,5 +24,5 @@ module.exports = app => {
     //Delete all roles
     router.delete("/", roles.deleteAll);
 
-    app.use('/api/v1/roles/', router);
+    app.use('/api/v1/roles/', [authJwt.verifyToken], router);
 };

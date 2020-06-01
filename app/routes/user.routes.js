@@ -27,5 +27,5 @@ module.exports = app => {
         res.json({ userId: req.userId });
     });
 
-    app.use('/api/v1/users/', router);
+    app.use('/api/v1/users/', [authJwt.verifyToken], router);
 };
