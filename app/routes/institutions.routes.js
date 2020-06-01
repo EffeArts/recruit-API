@@ -1,5 +1,15 @@
+const { authJwt } = require('../middlewares');
+const institutions = require("../controllers/institution.controller");
+
 module.exports = app => {
-    const institutions = require("../controllers/institution.controller");
+
+    app.use(function(req, res, next) {
+        res.header(
+            "Access-Control-Allow-Headers",
+            "x-access-token, Origin, Content-Type, Accept"
+        );
+        next();
+    });
 
     let router = require("express").Router();
 
@@ -21,5 +31,10 @@ module.exports = app => {
     //Delete all institutions
     router.delete("/", institutions.deleteAll);
 
-    app.use('/api/v1/institutions/', router);
+    //Check userID from the request
+    router.get("/userId", (res, req) => {
+        res.json({ userId: req.userId });
+    });
+
+    app.use('/api/v1/institutions/', [authJwt.verifyToken], router);
 };

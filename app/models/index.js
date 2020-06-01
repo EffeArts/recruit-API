@@ -24,6 +24,7 @@ db.inst_statuses = require("./inst_status.model")(sequelize, Sequelize);
 db.institutions = require("./institution.model")(sequelize, Sequelize);
 db.user_roles = require("./user_role.model")(sequelize, Sequelize);
 db.user_statuses = require("./user_status.model")(sequelize, Sequelize);
+db.users = require("./user.model")(sequelize, Sequelize);
 
 // ----------------------Sequelize associations----------------------------
 // status and institutions relationship
@@ -49,6 +50,42 @@ db.inst_types.hasMany(db.institutions, {
 db.institutions.belongsTo(db.inst_types, {
     foreignKey: "inst_type_id",
     as: "type"
+});
+
+// Users and Role relationship
+db.user_roles.hasMany(db.users, {
+    foreignKey: "role_id",
+    as: "users",
+    onDelete: 'RESTRICT',
+    onUpdate: 'CASCADE'
+});
+db.users.belongsTo(db.user_roles, {
+    foreignKey: "role_id",
+    as: "role"
+});
+
+// Users and statuses relationship
+db.user_statuses.hasMany(db.users, {
+    foreignKey: "user_status_id",
+    as: "users",
+    onDelete: 'RESTRICT',
+    onUpdate: 'CASCADE'
+});
+db.users.belongsTo(db.user_statuses, {
+    foreignKey: "user_status_id",
+    as: "status"
+});
+
+// Users and institutions relationship
+db.institutions.hasMany(db.users, {
+    foreignKey: "institution_id",
+    as: "users",
+    onDelete: 'RESTRICT',
+    onUpdate: 'CASCADE'
+});
+db.users.belongsTo(db.institutions, {
+    foreignKey: "institution_id",
+    as: "institution"
 });
 
 module.exports = db;

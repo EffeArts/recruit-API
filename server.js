@@ -30,6 +30,8 @@ require('./app/routes/inst_status.routes')(app);
 require('./app/routes/institutions.routes')(app);
 require('./app/routes/role.routes')(app);
 require('./app/routes/user_status.routes')(app);
+require('./app/routes/auth.routes')(app);
+require('./app/routes/user.routes')(app);
 
 
 // set port, listen for requests
