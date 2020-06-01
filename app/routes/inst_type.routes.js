@@ -1,6 +1,7 @@
-module.exports = app => {
-    const inst_types = require("../controllers/inst_type.controller");
+const { authJwt } = require('../middlewares');
+const inst_types = require("../controllers/inst_type.controller");
 
+module.exports = app => {
     let router = require("express").Router();
 
     // Create a new type
@@ -21,5 +22,5 @@ module.exports = app => {
     //Delete all types
     router.delete("/", inst_types.deleteAll);
 
-    app.use('/api/v1/inst_types/', router);
+    app.use('/api/v1/inst_types/', [authJwt.verifyToken], router);
 };

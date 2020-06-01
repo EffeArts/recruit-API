@@ -1,6 +1,7 @@
-module.exports = app => {
-    const inst_statuses = require("../controllers/inst_status.controller");
+const inst_statuses = require("../controllers/inst_status.controller");
+const { authJwt } = require('../middlewares');
 
+module.exports = app => {
     let router = require("express").Router();
 
     // Create a new status
@@ -21,5 +22,5 @@ module.exports = app => {
     //Delete all statuses
     router.delete("/", inst_statuses.deleteAll);
 
-    app.use('/api/v1/inst_statuses/', router);
+    app.use('/api/v1/inst_statuses/', [authJwt.verifyToken], router);
 };

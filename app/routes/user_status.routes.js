@@ -1,5 +1,7 @@
+const { authJwt } = require('../middlewares');
+const statuses = require("../controllers/user_status.controller");
+
 module.exports = app => {
-    const statuses = require("../controllers/user_status.controller");
 
     let router = require("express").Router();
 
@@ -15,5 +17,5 @@ module.exports = app => {
 
     router.delete("/", statuses.deleteAll);
 
-    app.use('/api/v1/user_statuses/', router);
+    app.use('/api/v1/user_statuses/', [authJwt.verifyToken], router);
 };
